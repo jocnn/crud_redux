@@ -1,7 +1,15 @@
+import FormProduct from "./FormProducto"
+
 const EditProduct = () => {
+  
+  const params = {
+    nombre: 'Editar',
+    accion: 'Guardar Cambios'
+  }
+  
   return (
     <>
-      <h1>Desde EditProduct</h1>
+      <FormProduct params={params} />
     </>
   )
 }

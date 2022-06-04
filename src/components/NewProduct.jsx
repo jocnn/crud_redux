@@ -1,7 +1,15 @@
+import FormProduct from "./FormProducto"
+
 const NewProduct = () => {
+  
+  const params = {
+    nombre: 'Nuevo',
+    accion: 'Nuevo Producto'
+  }
+  
   return (
     <>
-      <h1>Desde NewProduct</h1>
+      <FormProduct params={params} />
     </>
   )
 }

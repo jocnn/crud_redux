@@ -1,21 +1,31 @@
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import { crearNuevoProductoAccion } from "../actions/productActions"
 
 const NewProduct = () => {
 
+  const [ nombre, setNombre ] = useState()
+  const [ precio, setPrecio ] = useState()
+
   const dispatch = useDispatch()
-  const agregarProducto = dispatch( crearNuevoProductoAccion() )
+  const agregarProducto = producto => dispatch( crearNuevoProductoAccion(producto) )
 
   const handleSubmit = e => {
     e.preventDefault()
 
     // validar formlulario
+    if (nombre.includes('') || precio <= 0) {
+
+    }
 
     // si no hay errores
 
     // crear nuevo producto
-    agregarProducto()
+    agregarProducto({
+      nombre, 
+      precio
+    })
   }
   
   return (
@@ -40,7 +50,9 @@ const NewProduct = () => {
                     type="text"
                     className="form-control"
                     placeholder="Nombre Producto"
-                    name="nombre" 
+                    name="nombre"
+                    value={nombre}
+                    onChange={ e => setNombre(e.target.value) }
                   />
                 </div>
                 <div className="form-group">
@@ -51,6 +63,8 @@ const NewProduct = () => {
                     className="form-control"
                     placeholder="Precio Producto"
                     name="precio"
+                    value={precio}
+                    onChange={ e => setPrecio(Number(e.target.value)) }
                   />
                 </div>
 

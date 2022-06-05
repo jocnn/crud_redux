@@ -5,8 +5,8 @@ import { crearNuevoProductoAccion } from "../actions/productActions"
 
 const NewProduct = () => {
 
-  const [ nombre, setNombre ] = useState()
-  const [ precio, setPrecio ] = useState()
+  const [ nombre, setNombre ] = useState('')
+  const [ precio, setPrecio ] = useState('')
 
   const dispatch = useDispatch()
   const agregarProducto = producto => dispatch( crearNuevoProductoAccion(producto) )

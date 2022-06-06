@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
 import { crearNuevoProductoAccion } from "../actions/productActions"
@@ -12,6 +13,8 @@ const NewProduct = () => {
 
   const dispatch = useDispatch()
   const agregarProducto = producto => dispatch(crearNuevoProductoAccion(producto))
+
+  const navigate = useNavigate()
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -36,7 +39,10 @@ const NewProduct = () => {
       precio
     })
 
-    // reset alerta
+    // redireccionar 
+    setTimeout(() => {
+      navigate('/')
+    }, 3000);
   
   }
 

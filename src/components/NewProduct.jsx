@@ -2,21 +2,30 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import { crearNuevoProductoAccion } from "../actions/productActions"
+import Alert from "./Alert"
 
 const NewProduct = () => {
 
   const [ nombre, setNombre ] = useState('')
-  const [ precio, setPrecio ] = useState('')
+  const [ precio, setPrecio ] = useState(0)
+  const [ alerta, setAlerta ] = useState({})
 
   const dispatch = useDispatch()
-  const agregarProducto = producto => dispatch( crearNuevoProductoAccion(producto) )
+  const agregarProducto = producto => dispatch(crearNuevoProductoAccion(producto))
 
   const handleSubmit = e => {
     e.preventDefault()
 
     // validar formlulario
-    if (nombre.includes('') || precio <= 0) {
-
+    if (nombre.trim() == '' || precio <= 0) {
+      setAlerta({
+        msg: 'Todos los Campos deben de estar llenos',
+        error: true
+      })
+      setTimeout(() => {
+        setAlerta({})
+      }, 3000)
+      return
     }
 
     // si no hay errores
@@ -26,7 +35,12 @@ const NewProduct = () => {
       nombre, 
       precio
     })
+
+    // reset alerta
+  
   }
+
+  const { msg } = alerta
   
   return (
     <>
@@ -77,6 +91,11 @@ const NewProduct = () => {
               </form>
             </div>
           </div>
+
+          {
+            msg && <Alert alerta={alerta} />
+          }
+
         </div>
       </div>
     </>

@@ -2,6 +2,9 @@ import {
 	PRODUCTO_AGREGAR,
 	PRODUCTO_AGREGAR_EXITO,
 	PRODUCTO_AGREGAR_ERROR,
+  PRODUCTO_DESCARGAR,
+  PRODUCTO_DESCARGAR_EXITO,
+  PRODUCTO_DESCARGAR_ERROR
 } from "../types";
 import clienteAxios from "../config/axios";
 import Swal from "sweetalert2"
@@ -47,4 +50,21 @@ const agregarProductoExito = producto => ({
 const agregarProductoError = estado => ({
   type: PRODUCTO_AGREGAR_ERROR,
   payload: estado
+})
+
+export function obtenerProductosAction() {
+  return async dispatch => {
+    dispatch(descargarProductos())
+
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
+}
+
+const descargarProductos = () => ({
+  type: PRODUCTO_DESCARGAR,
+  payload: true
 })

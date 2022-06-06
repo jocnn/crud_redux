@@ -1,4 +1,20 @@
+import { useEffect } from "react"
+
+import { useSelector, useDispatch } from "react-redux"
+import { obtenerProductosAction } from "../actions/productActions"
+
 const Products = () => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    
+    // consultar API
+    const cargarProductos = () => dispatch(obtenerProductosAction())
+    cargarProductos()
+
+  }, [])
+
   return (
     <>
       <h2

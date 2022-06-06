@@ -44,6 +44,12 @@ export default function (state = initialState, action) {
         error: null,
         products: action.payload
       }
+    case PRODUCTO_DESCARGAR_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      }
     default:
 			return state;
 	}

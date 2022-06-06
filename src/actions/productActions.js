@@ -61,7 +61,8 @@ export function obtenerProductosAction() {
       dispatch(descargaProductosExitoso(resp.data))
       
     } catch (error) {
-      
+      console.log(error)
+      dispatch(descargaProductosError())
     }
   }
 }
@@ -74,4 +75,9 @@ const descargarProductos = () => ({
 const descargaProductosExitoso = productos => ({
   type: PRODUCTO_DESCARGAR_EXITO,
   payload: productos,
+})
+
+const descargaProductosError = () => ({
+  type: PRODUCTO_DESCARGAR_ERROR,
+  payload: true
 })

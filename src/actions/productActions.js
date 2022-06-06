@@ -57,6 +57,8 @@ export function obtenerProductosAction() {
     dispatch(descargarProductos())
 
     try {
+      const resp = await clienteAxios('/productos')
+      dispatch(descargaProductosExitoso(resp.data))
       
     } catch (error) {
       
@@ -67,4 +69,9 @@ export function obtenerProductosAction() {
 const descargarProductos = () => ({
   type: PRODUCTO_DESCARGAR,
   payload: true
+})
+
+const descargaProductosExitoso = productos => ({
+  type: PRODUCTO_DESCARGAR_EXITO,
+  payload: productos,
 })

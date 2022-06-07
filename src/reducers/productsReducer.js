@@ -7,14 +7,18 @@ import {
   PRODUCTO_DESCARGAR_ERROR,
   PRODUCTO_ELIMINAR,
   PRODUCTO_ELIMINAR_EXITO,
-  PRODUCTO_ELIMINAR_ERROR
+  PRODUCTO_ELIMINAR_ERROR,
+  PRODUCTO_EDITAR,
+  PRODUCTO_EDITAR_EXITO,
+  PRODUCTO_EDITAR_ERROR
 } from "../types";
 
 const initialState = {
 	products: [],
 	error: null,
 	loading: false,
-  productdelete: null
+  productdelete: null,
+  producteditar: null
 };
 
 export default function (state = initialState, action) {
@@ -70,6 +74,11 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload
+      }
+    case PRODUCTO_EDITAR:
+      return {
+        ...state,
+        producteditar: action.payload
       }
     default:
 			return state;

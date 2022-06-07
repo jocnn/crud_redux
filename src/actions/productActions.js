@@ -4,7 +4,10 @@ import {
 	PRODUCTO_AGREGAR_ERROR,
   PRODUCTO_DESCARGAR,
   PRODUCTO_DESCARGAR_EXITO,
-  PRODUCTO_DESCARGAR_ERROR
+  PRODUCTO_DESCARGAR_ERROR,
+  PRODUCTO_ELIMINAR,
+  PRODUCTO_ELIMINAR_EXITO,
+  PRODUCTO_ELIMINAR_ERROR
 } from "../types";
 import clienteAxios from "../config/axios";
 import Swal from "sweetalert2"
@@ -80,4 +83,21 @@ const descargaProductosExitoso = productos => ({
 const descargaProductosError = () => ({
   type: PRODUCTO_DESCARGAR_ERROR,
   payload: true
+})
+
+export function eliminarProductoAction(id) {
+  return async dispatch => {
+    dispatch(eliminarProducto())
+
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
+}
+
+const eliminarProducto = id => ({
+  type: PRODUCTO_ELIMINAR,
+  payload: id
 })

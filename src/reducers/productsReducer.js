@@ -59,6 +59,12 @@ export default function (state = initialState, action) {
         ...state,
         productdelete: action.payload,
       }
+    case PRODUCTO_ELIMINAR_EXITO:
+      return {
+        ...state,
+        products: state.products.filter(producto => producto.id !== state.productdelete),
+        productdelete: null
+      }
     default:
 			return state;
 	}

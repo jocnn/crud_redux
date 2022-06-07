@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 
 import { useSelector, useDispatch } from "react-redux"
 import { obtenerProductosAction } from "../actions/productActions"
@@ -15,9 +15,10 @@ const Products = () => {
     cargarProductos()
   }, [])
 
-  const productos = useSelector((state) => state.products.products)
+  const productos = useSelector(state => state.products.products)
+  const error = useSelector(state => state.products.error)
+  const loading = useSelector(state => state.products.loading)
 
-  
   return (
     <>
       <h2
@@ -25,6 +26,19 @@ const Products = () => {
       >
         Listado de Productos
       </h2>
+
+      {
+        error && 
+          <p
+            className="font-weight-bold alert alert-danger text-center mt-4"
+          >Hubo un error</p>
+      }
+      {
+        loading && 
+          <p 
+            className="text-center mt-4 alert alert-success font-weight-bold"
+          >Cargando</p>
+      }
 
       <table className="table table-striped">
         <thead className="bg-primary table-dark">
@@ -35,6 +49,14 @@ const Products = () => {
           </tr>
         </thead>
         <tbody>
+          {
+            productos.length === 0 &&
+            <tr>
+              <td>No hay productos</td>
+              <td></td>
+              <td></td>
+            </tr>
+          }
           {
             productos.map( producto => (
               <Product 

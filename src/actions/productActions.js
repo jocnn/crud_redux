@@ -93,7 +93,8 @@ export function eliminarProductoAction(id) {
       await clienteAxios.delete(`/productos/${id}`)
       dispatch(eliminarProductoExito())
     } catch (error) {
-      
+      console.log(error)
+      dispatch(eliminarProductoError())
     }
   }
 }
@@ -105,4 +106,9 @@ const eliminarProducto = id => ({
 
 const eliminarProductoExito = () => ({
   type: PRODUCTO_ELIMINAR_EXITO
+})
+
+const eliminarProductoError = () => ({
+  type: PRODUCTO_ELIMINAR_ERROR,
+  payload: true
 })

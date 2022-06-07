@@ -65,6 +65,12 @@ export default function (state = initialState, action) {
         products: state.products.filter(producto => producto.id !== state.productdelete),
         productdelete: null
       }
+    case PRODUCTO_ELIMINAR_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      }
     default:
 			return state;
 	}

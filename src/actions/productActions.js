@@ -87,10 +87,11 @@ const descargaProductosError = () => ({
 
 export function eliminarProductoAction(id) {
   return async dispatch => {
-    dispatch(eliminarProducto())
+    dispatch(eliminarProducto(id))
 
     try {
-      
+      await clienteAxios.delete(`/productos/${id}`)
+      dispatch(eliminarProductoExito())
     } catch (error) {
       
     }
@@ -100,4 +101,8 @@ export function eliminarProductoAction(id) {
 const eliminarProducto = id => ({
   type: PRODUCTO_ELIMINAR,
   payload: id
+})
+
+const eliminarProductoExito = () => ({
+  type: PRODUCTO_ELIMINAR_EXITO
 })

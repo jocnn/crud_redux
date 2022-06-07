@@ -7,7 +7,10 @@ import {
   PRODUCTO_DESCARGAR_ERROR,
   PRODUCTO_ELIMINAR,
   PRODUCTO_ELIMINAR_EXITO,
-  PRODUCTO_ELIMINAR_ERROR
+  PRODUCTO_ELIMINAR_ERROR,
+  PRODUCTO_EDITAR,
+  PRODUCTO_EDITAR_EXITO,
+  PRODUCTO_EDITAR_ERROR
 } from "../types";
 import clienteAxios from "../config/axios";
 import Swal from "sweetalert2"
@@ -117,4 +120,21 @@ const eliminarProductoExito = () => ({
 const eliminarProductoError = () => ({
   type: PRODUCTO_ELIMINAR_ERROR,
   payload: true
+})
+
+export function editarProductoAction(producto) {
+  return async dispatch => {
+    dispatch(editarProducto(producto))
+
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
+}
+
+const editarProducto = producto => ({
+  type: PRODUCTO_EDITAR,
+  payload: producto
 })

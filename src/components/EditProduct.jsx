@@ -1,12 +1,28 @@
+import { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { iniciarEditarProductoAction } from "../actions/productActions"
+
 const EditProduct = () => {
-  
+
+  const [ producto, setProducto ] = useState({
+    nombre: '',
+    precio: 0
+  })
+
+  const productoeditar = useSelector(state => state.products.producteditar)
+
+  const { id, nombre, precio } = productoeditar
+
+  useEffect(() => {
+    setProducto(productoeditar)
+  }, [productoeditar])
+
   const handleSubmit = e => {
     e.preventDefault()
 
-
-    
+    iniciarEditarProductoAction()    
   }
-  
+
   return (
     <>
       <div className="row justify-content-center">
@@ -30,6 +46,7 @@ const EditProduct = () => {
                     className="form-control"
                     placeholder="Nombre Producto"
                     name="nombre" 
+                    value={nombre}
                   />
                 </div>
                 <div className="form-group">
@@ -40,6 +57,7 @@ const EditProduct = () => {
                     className="form-control"
                     placeholder="Precio Producto"
                     name="precio"
+                    value={precio}
                   />
                 </div>
 

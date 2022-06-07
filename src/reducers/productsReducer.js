@@ -9,6 +9,7 @@ import {
   PRODUCTO_ELIMINAR_EXITO,
   PRODUCTO_ELIMINAR_ERROR,
   PRODUCTO_EDITAR,
+  PRODUCTO_EDITAR_INICIO,
   PRODUCTO_EDITAR_EXITO,
   PRODUCTO_EDITAR_ERROR
 } from "../types";
@@ -79,6 +80,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         producteditar: action.payload
+      }
+    case PRODUCTO_EDITAR_INICIO:
+      return {
+        ...state,
+        
       }
     default:
 			return state;

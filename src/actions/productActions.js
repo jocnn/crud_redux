@@ -9,6 +9,7 @@ import {
   PRODUCTO_ELIMINAR_EXITO,
   PRODUCTO_ELIMINAR_ERROR,
   PRODUCTO_EDITAR,
+  PRODUCTO_EDITAR_INICIO,
   PRODUCTO_EDITAR_EXITO,
   PRODUCTO_EDITAR_ERROR
 } from "../types";
@@ -125,16 +126,27 @@ const eliminarProductoError = () => ({
 export function editarProductoAction(producto) {
   return async dispatch => {
     dispatch(editarProducto(producto))
+  }
+}
+
+const editarProducto = producto => ({
+  type: PRODUCTO_EDITAR,
+  payload: producto
+})
+
+export function iniciarEditarProductoAction(producto) {
+  return async dispatch => {
+    dispatch(iniciarEdicionProducto(producto))
 
     try {
-      
+      await clienteAxios.put(`/productos/${producto.id}`, producto)
     } catch (error) {
       
     }
   }
 }
 
-const editarProducto = producto => ({
-  type: PRODUCTO_EDITAR,
+const iniciarEdicionProducto = producto => ({
+  type: PRODUCTO_EDITAR_INICIO,
   payload: producto
 })

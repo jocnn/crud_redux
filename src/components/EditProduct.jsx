@@ -1,26 +1,39 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { iniciarEditarProductoAction } from "../actions/productActions"
 
 const EditProduct = () => {
 
-  const [ producto, setProducto ] = useState({
-    nombre: '',
-    precio: 0
-  })
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const productoeditar = useSelector(state => state.products.producteditar)
-
-  const { id, nombre, precio } = productoeditar
-
+  
+  const [ producto, setProducto ] = useState({
+    nombre: '',
+    precio: ''
+  })
+  
   useEffect(() => {
     setProducto(productoeditar)
   }, [productoeditar])
+  
+  const onChangeFormulario = e => {
+    setProducto({
+      ...producto,
+      [e.target.name]: e.target.value
+    })
+  }
+  
+  const { nombre, precio } = producto
 
   const handleSubmit = e => {
     e.preventDefault()
 
-    iniciarEditarProductoAction()    
+    dispatch(iniciarEditarProductoAction(producto))    
+
+    navigate('/')
   }
 
   return (
@@ -47,6 +60,7 @@ const EditProduct = () => {
                     placeholder="Nombre Producto"
                     name="nombre" 
                     value={nombre}
+                    onChange={ onChangeFormulario }
                   />
                 </div>
                 <div className="form-group">
@@ -58,6 +72,7 @@ const EditProduct = () => {
                     placeholder="Precio Producto"
                     name="precio"
                     value={precio}
+                    onChange={ onChangeFormulario }
                   />
                 </div>
 

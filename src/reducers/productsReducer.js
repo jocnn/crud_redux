@@ -93,6 +93,12 @@ export default function (state = initialState, action) {
           producto.id === action.payload.id ? producto = action.payload : producto
         )
       }
+    case PRODUCTO_EDITAR_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      }
     default:
 			return state;
 	}

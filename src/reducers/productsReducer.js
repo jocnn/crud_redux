@@ -84,7 +84,14 @@ export default function (state = initialState, action) {
     case PRODUCTO_EDITAR_INICIO:
       return {
         ...state,
-        
+      }
+    case PRODUCTO_EDITAR_EXITO:
+      return {
+        ...state,
+        producteditar: null,
+        products: state.products.map( producto =>
+          producto.id === action.payload.id ? producto = action.payload : producto
+        )
       }
     default:
 			return state;
